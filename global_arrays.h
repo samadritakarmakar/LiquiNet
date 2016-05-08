@@ -1,0 +1,5 @@
+#ifndef GLOBAL_ARRAYS_H
+#define GLOBAL_ARRAYS_H
+
+#endif // GLOBAL_ARRAYS_H
+

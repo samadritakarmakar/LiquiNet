@@ -1,0 +1,22 @@
+#ifndef PIPE_SEGMENT_DETAILS_H
+#define PIPE_SEGMENT_DETAILS_H
+
+#include <QWidget>
+
+namespace Ui {
+class Pipe_Segment_Details;
+}
+
+class Pipe_Segment_Details : public QWidget
+{
+    Q_OBJECT
+
+public:
+    explicit Pipe_Segment_Details(QWidget *parent = 0);
+    ~Pipe_Segment_Details();
+
+private:
+    Ui::Pipe_Segment_Details *ui;
+};
+
+#endif // PIPE_SEGMENT_DETAILS_H

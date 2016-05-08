@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Detail_Input</class>
+ <widget class="QMainWindow" name="Detail_Input">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>406</width>
+    <height>368</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="slve_pb">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>300</y>
+      <width>84</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Solve</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>270</y>
+      <width>193</width>
+      <height>36</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Note: Values are not stored till
+Previous/Next button is pressed</string>
+    </property>
+   </widget>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>401</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Element Input</string>
+     </attribute>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="0">
+       <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Node</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Element Number</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="E_le">
+          <property name="text">
+           <string>1</string>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="2">
+         <widget class="QPushButton" name="nxt_elmnt_pb">
+          <property name="text">
+           <string>Next Element</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2">
+         <widget class="QRadioButton" name="fcv_rb">
+          <property name="text">
+           <string>Flow Control &amp;Valve</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QPushButton" name="prvs_elmnt_pb">
+          <property name="text">
+           <string>Previous Element</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="QRadioButton" name="booster_rb">
+          <property name="text">
+           <string>Booster</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>Element is a</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="nde_f_le"/>
+        </item>
+        <item row="3" column="0" colspan="2">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>to</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLineEdit" name="nde_s_le"/>
+        </item>
+        <item row="2" column="2">
+         <widget class="QRadioButton" name="pipe_sgmnt_rb">
+          <property name="text">
+           <string>Pipe Segment</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>Node</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="2">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Flow is from</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Node Input</string>
+     </attribute>
+     <widget class="QWidget" name="gridLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>10</y>
+        <width>251</width>
+        <height>231</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="nde_nmbr_le">
+         <property name="text">
+          <string>1</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Node Number</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QPushButton" name="nxt_nde_pb">
+         <property name="text">
+          <string>Next Node</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QRadioButton" name="flw_nde_rb">
+         <property name="text">
+          <string>F&amp;low into Node</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="flw_nde_le">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QRadioButton" name="head_nde_rb">
+         <property name="text">
+          <string>Head at Node</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="head_nde_le">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QPushButton" name="prv_nde_pb">
+         <property name="text">
+          <string>Previous Node</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="save_as_pb">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>300</y>
+      <width>88</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Save As</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="slctn_hlpr">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>260</y>
+      <width>181</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Open Selection Helper</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>406</width>
+     <height>30</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>E_le</tabstop>
+  <tabstop>nde_f_le</tabstop>
+  <tabstop>nde_s_le</tabstop>
+  <tabstop>pipe_sgmnt_rb</tabstop>
+  <tabstop>booster_rb</tabstop>
+  <tabstop>fcv_rb</tabstop>
+  <tabstop>nxt_elmnt_pb</tabstop>
+  <tabstop>prvs_elmnt_pb</tabstop>
+  <tabstop>nde_nmbr_le</tabstop>
+  <tabstop>head_nde_rb</tabstop>
+  <tabstop>head_nde_le</tabstop>
+  <tabstop>flw_nde_rb</tabstop>
+  <tabstop>flw_nde_le</tabstop>
+  <tabstop>prv_nde_pb</tabstop>
+  <tabstop>nxt_nde_pb</tabstop>
+  <tabstop>slctn_hlpr</tabstop>
+  <tabstop>save_as_pb</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>slve_pb</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

@@ -69,6 +69,8 @@ private slots:
 
     void on_slctn_hlpr_clicked();
 
+    int node_ok();
+
 private:
     Ui::Detail_Input *ui;
 };

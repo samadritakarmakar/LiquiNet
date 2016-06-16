@@ -1,4 +1,4 @@
-/* LiquiNet is cross platform GUI software to solve water or Liquid Pipe Network Problems
+/* LiquiNet is cross platform GUI software to solve Water or Liquid Pipe Network Problems
     Copyright (C) 2016  Samadrita Karmakar (samadritakarmakar@gmail.com)
 
     This program is free software: you can redistribute it and/or modify

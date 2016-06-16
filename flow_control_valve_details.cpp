@@ -27,6 +27,7 @@ Flow_Control_Valve_Details::Flow_Control_Valve_Details(QWidget *parent) :
     ui(new Ui::Flow_Control_Valve_Details)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Flow Control Valve Details");
 }
 
 Flow_Control_Valve_Details::~Flow_Control_Valve_Details()

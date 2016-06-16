@@ -27,6 +27,7 @@ Pipe_Segement_Details::Pipe_Segement_Details(QWidget *parent) :
     ui(new Ui::Pipe_Segement_Details)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Pipe Segment Details");
 }
 
 Pipe_Segement_Details::~Pipe_Segement_Details()

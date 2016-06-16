@@ -68,6 +68,7 @@ Initialize::Initialize(QWidget *parent) :
     ui(new Ui::Initialize)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Initialize");
 }
 
 Initialize::~Initialize()

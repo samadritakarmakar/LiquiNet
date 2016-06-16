@@ -28,15 +28,20 @@
 #include <QDir>
 #include "global_variables.h"
 #include <QDebug>
-//#include "error_dialog.h"
+
+//error dialog for node input
+#include "error_dialog.h"
+
 #include "progress.h"
 //unsure
 #include "ui_progress.h"
 #include "results.h"
 #include "thread.h"
 #include "selection_help.h"
+
+
 //unsure at the time of addition
-#include "QPushButton"
+//#include "QPushButton"
 
 
 //Element tab
@@ -67,7 +72,7 @@ void Detail_Input::first_display()
 
 void Detail_Input::on_nxt_elmnt_pb_clicked()
 {
-    if(elcf>=elc && elc<=E-1)
+    if(elcf>=elc && elc<=E-1 && node_ok())
     {
         en(elc,0)=ui->nde_f_le->text().toInt();
         en(elc,1)=ui->nde_s_le->text().toInt();
@@ -95,7 +100,7 @@ void Detail_Input::on_nxt_elmnt_pb_clicked()
 
 void Detail_Input::on_prvs_elmnt_pb_clicked()
 {
-    if(elc>0)
+    if(elc>0 && node_ok())
     {
             en(elc,0)=ui->nde_f_le->text().toInt();
             en(elc,1)=ui->nde_s_le->text().toInt();
@@ -187,6 +192,24 @@ void Detail_Input::set_elmnt_dtls_rb()
             ui->booster_rb->setAutoExclusive(true);
             ui->fcv_rb->setAutoExclusive(true);
         }
+}
+
+//check if node is within limits
+int Detail_Input::node_ok()
+{
+    qDebug()<<"working";
+    int n1,n2;
+    n1=ui->nde_f_le->text().toInt();
+    n2=ui->nde_s_le->text().toInt();
+    if(n1<0 || n1==0 || n1>N || n2<0 || n2==0 || n2>N)
+    {
+        error_dialog* e=new error_dialog;
+        e->callerror("Check your node number Input");
+        qDebug()<<"going in!!";
+        return 0;
+    }
+    else
+        return 1;
 }
 
 //Node tab
@@ -380,3 +403,4 @@ void Detail_Input::on_slctn_hlpr_clicked()
     selection_help* h=new selection_help(g, mu, ro);
     h->show();
 }
+

@@ -32,6 +32,7 @@ Results::Results(QWidget *parent) :
     ui(new Ui::Results)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Results");
 
 }
 

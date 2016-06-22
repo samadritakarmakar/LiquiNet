@@ -43,7 +43,7 @@ void calculate_h()
                     o(i)=1;
                     q(i)=0;
                 }
-                h0(i)=pow((q(i)/A(i)),2)*k(i)/(2*g)*pow((100.0/o(i)),(.5/n(i)));
+                h0(i)=pow((q(i)/A(i)),2)*k(i)/(2*g)*pow((100.0/o(i)),(2*n(i)));
             }
     }
 }

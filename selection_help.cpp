@@ -117,7 +117,7 @@ void selection_help::on_Go_pb_clicked()
     {
         A=M_PI/4*pow(D,2);
 
-        double o=pow(k*pow(q/A,2)/(2.0*g*h),(2.0*n))*100.0;
+        double o=pow(k*pow(q/A,2)/(2.0*g*h),(0.5/n))*100.0;
         ui->result_lb->setText("Valve Opening Reqired");
         ui->Result_le->setText(QString::number(o));
     }

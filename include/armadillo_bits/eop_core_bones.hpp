@@ -76,6 +76,7 @@ class eop_asinh             : public eop_core<eop_asinh>             {};
 class eop_atanh             : public eop_core<eop_atanh>             {};
 class eop_eps               : public eop_core<eop_eps>               {};
 class eop_abs               : public eop_core<eop_abs>               {};
+class eop_arg               : public eop_core<eop_arg>               {};
 class eop_conj              : public eop_core<eop_conj>              {};
 class eop_pow               : public eop_core<eop_pow>               {};
 class eop_floor             : public eop_core<eop_floor>             {};
@@ -83,6 +84,9 @@ class eop_ceil              : public eop_core<eop_ceil>              {};
 class eop_round             : public eop_core<eop_round>             {};
 class eop_trunc             : public eop_core<eop_trunc>             {};
 class eop_sign              : public eop_core<eop_sign>              {};
+class eop_erf               : public eop_core<eop_erf>               {};
+class eop_erfc              : public eop_core<eop_erfc>              {};
+class eop_lgamma            : public eop_core<eop_lgamma>            {};
 
 
 

@@ -60,7 +60,7 @@ mat Hd;
 mat err;
 mat H3;
 mat Q3;
-double range, ro, g, mu, Re0, Re, qa;
+double rangep, ro, g, mu, Re0, Re, qa;
 int N, E, elc=0,elcf=0, ndc=0, ndcf=0, stop=0,flg1;
 
 Initialize::Initialize(QWidget *parent) :
@@ -78,7 +78,7 @@ Initialize::~Initialize()
 
 void Initialize::on_Dtl_Inpt_pb_clicked()
 {
-    range=ui->range_le->text().toDouble();
+    rangep=ui->range_le->text().toDouble();
     g=ui->g_le->text().toDouble();
     ro=ui->ro_le->text().toDouble();
     mu=ui->mu_le->text().toDouble();
@@ -110,7 +110,7 @@ void Initialize::on_opn_fle_pb_clicked()
             lqi.readNext();
             if(lqi.name().toString()=="range")
 
-                range=lqi.readElementText().toDouble();
+                rangep=lqi.readElementText().toDouble();
 
             else if(lqi.name().toString()=="g")
 

@@ -125,6 +125,7 @@ spsolve
 
 
 template<typename T1, typename T2>
+arma_warn_unused
 inline
 Mat<typename T1::elem_type>
 spsolve
@@ -147,7 +148,7 @@ spsolve
   
   if(status == false)
     {
-    arma_bad("spsolve(): solution not found");
+    arma_stop_runtime_error("spsolve(): solution not found");
     }
   
   return out;

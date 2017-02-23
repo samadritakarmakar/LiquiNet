@@ -1,4 +1,4 @@
-// Copyright (C) 2013-2014 National ICT Australia (NICTA)
+// Copyright (C) 2013-2016 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -15,6 +15,7 @@
 
 //! eigenvalues of general sparse matrix X
 template<typename T1>
+arma_warn_unused
 inline
 Col< std::complex<typename T1::pod_type> >
 eigs_gen
@@ -39,7 +40,7 @@ eigs_gen
   if(status == false)
     {
     eigval.reset();
-    arma_bad("eigs_gen(): decomposition failed");
+    arma_stop_runtime_error("eigs_gen(): decomposition failed");
     }
   
   return eigval;

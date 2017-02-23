@@ -1,4 +1,4 @@
-// Copyright (C) 2010-2015 National ICT Australia (NICTA)
+// Copyright (C) 2010-2016 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -27,6 +27,8 @@ subview_elem1<eT,T1>::subview_elem1(const Mat<eT>& in_m, const Base<uword,T1>& i
   , a(in_a)
   {
   arma_extra_debug_sigprint();
+  
+  // TODO: refactor to unwrap 'in_a' instead of storing a ref to it; this will allow removal of carrying T1 around and repetition of size checks
   }
 
 
@@ -227,7 +229,7 @@ subview_elem1<eT,T1>::inplace_op(const Base<eT,T2>& x)
   
   const bool is_alias = P.is_alias(m);
   
-  if( (is_alias == false) && (Proxy<T2>::prefer_at_accessor == false) )
+  if( (is_alias == false) && (Proxy<T2>::use_at == false) )
     {
     typename Proxy<T2>::ea_type X = P.get_ea();
     
@@ -261,7 +263,7 @@ subview_elem1<eT,T1>::inplace_op(const Base<eT,T2>& x)
     }
   else
     {
-    arma_extra_debug_print("subview_elem1::inplace_op(): aliasing or prefer_at_accessor detected");
+    arma_extra_debug_print("subview_elem1::inplace_op(): aliasing or use_at detected");
     
     const unwrap_check<typename Proxy<T2>::stored_type> tmp(P.Q, is_alias);
     const Mat<eT>& M = tmp.M;
@@ -331,6 +333,60 @@ const Op<subview_elem1<eT,T1>,op_strans>
 subview_elem1<eT,T1>::st() const
   {
   return Op<subview_elem1<eT,T1>,op_strans>(*this);
+  }
+
+
+
+template<typename eT, typename T1>
+inline
+void
+subview_elem1<eT,T1>::replace(const eT old_val, const eT new_val)
+  {
+  arma_extra_debug_sigprint();
+  
+  Mat<eT>& m_local = const_cast< Mat<eT>& >(m);
+  
+        eT*   m_mem    = m_local.memptr();
+  const uword m_n_elem = m_local.n_elem;
+  
+  const unwrap_check_mixed<T1> tmp(a.get_ref(), m_local);
+  const umat& aa = tmp.M;
+  
+  arma_debug_check
+    (
+    ( (aa.is_vec() == false) && (aa.is_empty() == false) ),
+    "Mat::elem(): given object is not a vector"
+    );
+  
+  const uword* aa_mem    = aa.memptr();
+  const uword  aa_n_elem = aa.n_elem;
+  
+  if(arma_isnan(old_val))
+    {
+    for(uword iq=0; iq < aa_n_elem; ++iq)
+      {
+      const uword ii = aa_mem[iq];
+      
+      arma_debug_check( (ii >= m_n_elem), "Mat::elem(): index out of bounds" );
+      
+      eT& val = m_mem[ii];
+      
+      val = (arma_isnan(val)) ? new_val : val;
+      }
+    }
+  else
+    {
+    for(uword iq=0; iq < aa_n_elem; ++iq)
+      {
+      const uword ii = aa_mem[iq];
+      
+      arma_debug_check( (ii >= m_n_elem), "Mat::elem(): index out of bounds" );
+      
+      eT& val = m_mem[ii];
+      
+      val = (val == old_val) ? new_val : val;
+      }
+    }
   }
 
 

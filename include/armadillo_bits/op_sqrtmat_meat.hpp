@@ -28,7 +28,12 @@ op_sqrtmat::apply(Mat< std::complex<typename T1::elem_type> >& out, const mtOp<s
   {
   arma_extra_debug_sigprint();
   
-  op_sqrtmat::apply_direct(out, in.m);
+  const bool status = op_sqrtmat::apply_direct(out, in.m);
+  
+  if(status == false)
+    {
+    arma_debug_warn("sqrtmat(): given matrix seems singular; may not have a square root");
+    }
   }
 
 
@@ -66,11 +71,6 @@ op_sqrtmat::apply_direct(Mat< std::complex<typename T1::elem_type> >& out, const
       {
       out.at(i,i) = std::sqrt( std::complex<T>(val) );
       }
-    }
-  
-  if(singular)
-    {
-    arma_debug_warn("sqrtmat(): given matrix seems singular; may not have a square root");
     }
   
   return (singular) ? false : true;
@@ -116,7 +116,7 @@ op_sqrtmat::apply_direct(Mat< std::complex<typename T1::elem_type> >& out, const
   
   if(schur_ok == false)
     {
-    arma_debug_warn("sqrtmat(): schur decomposition failed");
+    arma_extra_debug_print("sqrtmat(): schur decomposition failed");
     out.reset();
     return false;
     }
@@ -129,11 +129,6 @@ op_sqrtmat::apply_direct(Mat< std::complex<typename T1::elem_type> >& out, const
   
   out = X*U.t();
   
-  if(status == false)
-    {
-    arma_debug_warn("sqrtmat(): given matrix seems singular; may not have a square root");
-    }
-
   return status;
   }
 
@@ -146,7 +141,12 @@ op_sqrtmat_cx::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_sqrtmat_cx
   {
   arma_extra_debug_sigprint();
   
-  op_sqrtmat_cx::apply_direct(out, in.m);
+  const bool status = op_sqrtmat_cx::apply_direct(out, in.m);
+  
+  if(status == false)
+    {
+    arma_debug_warn("sqrtmat(): given matrix seems singular; may not have a square root");
+    }
   }
 
 
@@ -210,11 +210,6 @@ op_sqrtmat_cx::apply_direct_noalias(Mat<typename T1::elem_type>& out, const diag
     out.at(i,i) = std::sqrt(val);
     }
   
-  if(singular)
-    {
-    arma_debug_warn("sqrtmat(): given matrix seems singular; may not have a square root");
-    }
-  
   return (singular) ? false : true;
   }
 
@@ -244,7 +239,7 @@ op_sqrtmat_cx::apply_direct(Mat<typename T1::elem_type>& out, const Base<typenam
   
   if(schur_ok == false)
     {
-    arma_debug_warn("sqrtmat(): schur decomposition failed");
+    arma_extra_debug_print("sqrtmat(): schur decomposition failed");
     out.reset();
     return false;
     }
@@ -256,11 +251,6 @@ op_sqrtmat_cx::apply_direct(Mat<typename T1::elem_type>& out, const Base<typenam
   S.reset();
   
   out = X*U.t();
-  
-  if(status == false)
-    {
-    arma_debug_warn("sqrtmat(): given matrix seems singular; may not have a square root");
-    }
   
   return status;
   }
@@ -313,6 +303,75 @@ op_sqrtmat_cx::helper(Mat< std::complex<T> >& S)
     }
   
   return (singular) ? false : true;
+  }
+
+
+
+template<typename T1>
+inline
+void
+op_sqrtmat_sympd::apply(Mat<typename T1::elem_type>& out, const Op<T1,op_sqrtmat_sympd>& in)
+  {
+  arma_extra_debug_sigprint();
+  
+  const bool status = op_sqrtmat_sympd::apply_direct(out, in.m);
+  
+  if(status == false)
+    {
+    out.reset();
+    arma_stop_runtime_error("sqrtmat_sympd(): transformation failed");
+    }
+  }
+
+
+
+template<typename T1>
+inline
+bool
+op_sqrtmat_sympd::apply_direct(Mat<typename T1::elem_type>& out, const Base<typename T1::elem_type,T1>& expr)
+  {
+  arma_extra_debug_sigprint();
+  
+  #if defined(ARMA_USE_LAPACK)
+    {
+    typedef typename T1::pod_type   T;
+    typedef typename T1::elem_type eT;
+    
+    const unwrap<T1>   U(expr.get_ref());
+    const Mat<eT>& X = U.M;
+    
+    arma_debug_check( (X.is_square() == false), "sqrtmat_sympd(): given matrix must be square sized" );
+    
+    Col< T> eigval;
+    Mat<eT> eigvec;
+    
+    const bool status = auxlib::eig_sym_dc(eigval, eigvec, X);
+    
+    if(status == false)  { return false; }
+    
+    const uword N          = eigval.n_elem;
+    const T*    eigval_mem = eigval.memptr();
+    
+    bool all_pos = true;
+    
+    for(uword i=0; i<N; ++i)  { all_pos = (eigval_mem[i] < T(0)) ? false : all_pos; }
+    
+    if(all_pos == false)  { return false; }
+    
+    eigval = sqrt(eigval);
+    
+    out = eigvec * diagmat(eigval) * eigvec.t();
+    
+    return true;
+    }
+  #else
+    {
+    arma_ignore(out);
+    arma_ignore(expr);
+    arma_stop_logic_error("sqrtmat_sympd(): use of LAPACK must be enabled");
+    return false;
+    }
+  #endif
   }
 
 

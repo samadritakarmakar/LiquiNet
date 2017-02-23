@@ -104,7 +104,9 @@ class Mat : public Base< eT, Mat<eT> >
   
   template<typename T1, typename T2>
   inline explicit Mat(const Base<pod_type,T1>& A, const Base<pod_type,T2>& B);
-
+  
+  inline explicit          Mat(const subview<eT>& X, const bool use_colmem);  // only to be used by the quasi_unwrap class
+  
   inline                   Mat(const subview<eT>& X);
   inline const Mat&  operator=(const subview<eT>& X);
   inline const Mat& operator+=(const subview<eT>& X);
@@ -435,6 +437,8 @@ class Mat : public Base< eT, Mat<eT> >
   template<typename functor> inline const Mat& transform(functor F);
   template<typename functor> inline const Mat&     imbue(functor F);
   
+  
+  inline const Mat& replace(const eT old_val, const eT new_val);
   
   arma_hot inline const Mat& fill(const eT val);
   

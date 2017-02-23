@@ -32,7 +32,7 @@
 
 using namespace arma;
 
-extern double range, ro, g, mu, Re0, Re, qa;
+extern double rangep, ro, g, mu, Re0, Re, qa;
 extern int N, E, elc, elcf, ndc,ndcf, flg1, stop ;
 extern mat C;
 extern mat Q;

@@ -45,12 +45,12 @@ int check_h()
         }
         else if(ch(i)==3)
         {
-            hc(i)=k(i)*pow((qc(i)/A(i)),2)/(2*g)*pow((100.0/o(i)),(0.5/n(i)));
+            hc(i)=k(i)*pow((qc(i)/A(i)),2)/(2*g)*pow((100.0/o(i)),(2*n(i)));
         }
         cc(i)=fabs(qc(i)/(hc(i)+Hd(i)));
         err(i)=fabs(fabs(hc(i))-fabs(h(i)))/fabs(h(i))*100;
         qDebug()<<"hc "<<hc(i)<<"h "<<h(i)<<"D "<<D(i)<<"f "<<f(i)<<"L "<<L(i)<<"A "<<A(i);
-        if(err(i)<range)
+        if(err(i)<rangep)
         {
             flg++;
         }

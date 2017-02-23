@@ -356,7 +356,7 @@ void Detail_Input::on_save_as_pb_clicked()
         lqi.setAutoFormatting(true);
         lqi.writeStartDocument();
         lqi.writeStartElement("LiquiNet");
-        lqi.writeTextElement("range", QString::number(range));
+        lqi.writeTextElement("range", QString::number(rangep));
         lqi.writeTextElement("g", QString::number(g));
         lqi.writeTextElement("ro", QString::number(ro));
         lqi.writeTextElement("mu", QString::number(mu));

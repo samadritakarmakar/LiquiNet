@@ -1,4 +1,4 @@
-// Copyright (C) 2011-2012 National ICT Australia (NICTA)
+// Copyright (C) 2011-2016 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -52,6 +52,7 @@ syl
 
 
 template<typename T1, typename T2, typename T3>
+arma_warn_unused
 inline
 Mat<typename T1::elem_type>
 syl
@@ -82,7 +83,7 @@ syl
   if(status == false)
     {
     out.reset();
-    arma_bad("syl(): solution not found");
+    arma_stop_runtime_error("syl(): solution not found");
     }
   
   return out;

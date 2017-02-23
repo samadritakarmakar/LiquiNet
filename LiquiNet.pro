@@ -30,11 +30,14 @@ SOURCES += main.cpp\
 
 unix{
 LIBS += -llapack -lblas -larmadillo
+#INCLUDEPATH +=include
+#LIBS +=-L"include" -llapack -lblas
 }
 win32{
 INCLUDEPATH +=E:\Programs\LiquiNet\include
-
-LIBS +=-L"E:\Programs\LiquiNet\include" -llapack -lblas
+#LIBS += -larmadillo
+#LIBS +=-L"E:\Programs\LiquiNet\include" -llapack -lopenblas
+LIBS += -llapack -lopenblas
 }
 
 HEADERS  += initialize.h \

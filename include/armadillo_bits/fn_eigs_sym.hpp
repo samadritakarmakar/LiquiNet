@@ -1,4 +1,4 @@
-// Copyright (C) 2013-2014 National ICT Australia (NICTA)
+// Copyright (C) 2013-2016 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -15,6 +15,7 @@
 
 //! eigenvalues of symmetric real sparse matrix X
 template<typename T1>
+arma_warn_unused
 inline
 Col<typename T1::pod_type>
 eigs_sym
@@ -37,7 +38,7 @@ eigs_sym
   if(status == false)
     {
     eigval.reset();
-    arma_bad("eigs_sym(): decomposition failed");
+    arma_stop_runtime_error("eigs_sym(): decomposition failed");
     }
   
   return eigval;
@@ -95,7 +96,7 @@ eigs_sym
   arma_extra_debug_sigprint();
   arma_ignore(junk);
   
-  arma_debug_check( void_ptr(&eigval) == void_ptr(&eigvec), "eigs_sym(): paramater 'eigval' is an alias of parameter 'eigvec'" );
+  arma_debug_check( void_ptr(&eigval) == void_ptr(&eigvec), "eigs_sym(): parameter 'eigval' is an alias of parameter 'eigvec'" );
   
   const bool status = sp_auxlib::eigs_sym(eigval, eigvec, X, n_eigvals, form, tol);
   

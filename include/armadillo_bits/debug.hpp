@@ -1,4 +1,4 @@
-// Copyright (C) 2008-2015 National ICT Australia (NICTA)
+// Copyright (C) 2008-2016 National ICT Australia (NICTA)
 // 
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -21,10 +21,7 @@ arma_stream_err1(std::ostream* user_stream)
   {
   static std::ostream* stream_err1 = &(ARMA_DEFAULT_OSTREAM);
   
-  if(user_stream != NULL)
-    {
-    stream_err1 = user_stream;
-    }
+  if(user_stream != NULL)  { stream_err1 = user_stream; }
   
   return *stream_err1;
   }
@@ -38,10 +35,7 @@ arma_stream_err2(std::ostream* user_stream)
   {
   static std::ostream* stream_err2 = &(ARMA_DEFAULT_OSTREAM);
   
-  if(user_stream != NULL)
-    {
-    stream_err2 = user_stream;
-    }
+  if(user_stream != NULL)  { stream_err2 = user_stream; }
   
   return *stream_err2;
   }
@@ -84,20 +78,17 @@ get_stream_err2()
 
 
 
-//
-// arma_stop
-
-//! print a message to get_stream_err1() and/or throw a logic_error exception
+//! print a message to get_stream_err1() and throw logic_error exception
 template<typename T1>
 arma_cold
 arma_noinline
 static
 void
-arma_stop(const T1& x)
+arma_stop_logic_error(const T1& x)
   {
   #if defined(ARMA_PRINT_ERRORS)
     {
-    get_stream_err1() << "\nerror: " << x << '\n';
+    get_stream_err1() << "\nerror: " << x << std::endl;
     }
   #endif
   
@@ -106,6 +97,7 @@ arma_stop(const T1& x)
 
 
 
+//! print a message to get_stream_err2() and throw bad_alloc exception
 template<typename T1>
 arma_cold
 arma_noinline
@@ -115,7 +107,7 @@ arma_stop_bad_alloc(const T1& x)
   {
   #if defined(ARMA_PRINT_ERRORS)
     {
-    get_stream_err2() << "\nerror: " << x << '\n';
+    get_stream_err2() << "\nerror: " << x << std::endl;
     }
   #else
     {
@@ -128,20 +120,17 @@ arma_stop_bad_alloc(const T1& x)
 
 
 
-//
-// arma_bad
-
-//! print a message to get_stream_err2() and/or throw a run-time error exception
+//! print a message to get_stream_err2() and throw runtime_error exception
 template<typename T1>
 arma_cold
 arma_noinline
 static
 void
-arma_bad(const T1& x)
+arma_stop_runtime_error(const T1& x)
   {
   #if defined(ARMA_PRINT_ERRORS)
     {
-    get_stream_err2() << "\nerror: " << x << '\n';
+    get_stream_err2() << "\nerror: " << x << std::endl;
     }
   #endif
   
@@ -341,10 +330,7 @@ inline
 void
 arma_check(const bool state, const T1& x)
   {
-  if(state==true)
-    {
-    arma_stop(arma_str::str_wrapper(x));
-    }
+  if(state == true)  { arma_stop_logic_error(arma_str::str_wrapper(x)); }
   }
 
 
@@ -354,10 +340,7 @@ inline
 void
 arma_check(const bool state, const T1& x, const T2& y)
   {
-  if(state==true)
-    {
-    arma_stop( std::string(x) + std::string(y) );
-    }
+  if(state == true)  { arma_stop_logic_error( std::string(x) + std::string(y) ); }
   }
 
 
@@ -367,10 +350,7 @@ inline
 void
 arma_check_bad_alloc(const bool state, const T1& x)
   {
-  if(state==true)
-    {
-    arma_stop_bad_alloc(x);
-    }
+  if(state == true)  { arma_stop_bad_alloc(x); }
   }
 
 
@@ -463,7 +443,7 @@ arma_assert_same_size(const uword A_n_rows, const uword A_n_cols, const uword B_
   {
   if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {
-    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
@@ -484,7 +464,7 @@ arma_assert_same_size(const Mat<eT1>& A, const Mat<eT2>& B, const char* x)
   
   if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {
-    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
@@ -505,7 +485,7 @@ arma_assert_same_size(const Proxy<eT1>& A, const Proxy<eT2>& B, const char* x)
   
   if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {
-    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
@@ -525,7 +505,7 @@ arma_assert_same_size(const subview<eT1>& A, const subview<eT2>& B, const char* 
   
   if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {
-    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
@@ -545,7 +525,7 @@ arma_assert_same_size(const Mat<eT1>& A, const subview<eT2>& B, const char* x)
   
   if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {
-    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
@@ -565,7 +545,7 @@ arma_assert_same_size(const subview<eT1>& A, const Mat<eT2>& B, const char* x)
   
   if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {
-    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
@@ -585,7 +565,7 @@ arma_assert_same_size(const Mat<eT1>& A, const Proxy<eT2>& B, const char* x)
   
   if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {
-    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
@@ -605,7 +585,7 @@ arma_assert_same_size(const Proxy<eT1>& A, const Mat<eT2>& B, const char* x)
   
   if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {
-    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
@@ -625,7 +605,7 @@ arma_assert_same_size(const Proxy<eT1>& A, const subview<eT2>& B, const char* x)
   
   if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {
-    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
@@ -645,7 +625,7 @@ arma_assert_same_size(const subview<eT1>& A, const Proxy<eT2>& B, const char* x)
   
   if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {
-    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
@@ -670,7 +650,7 @@ arma_assert_same_size(const SpMat<eT1>& A, const SpMat<eT2>& B, const char* x)
   
   if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) )
     {
-    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
@@ -688,7 +668,7 @@ arma_assert_same_size(const uword A_n_rows, const uword A_n_cols, const uword A_
   {
   if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) || (A_n_slices != B_n_slices) )
     {
-    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, A_n_slices, B_n_rows, B_n_cols, B_n_slices, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A_n_rows, A_n_cols, A_n_slices, B_n_rows, B_n_cols, B_n_slices, x) );
     }
   }
 
@@ -703,7 +683,7 @@ arma_assert_same_size(const Cube<eT1>& A, const Cube<eT2>& B, const char* x)
   {
   if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (A.n_slices != B.n_slices) )
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x) );
     }
   }
 
@@ -717,7 +697,7 @@ arma_assert_same_size(const Cube<eT1>& A, const subview_cube<eT2>& B, const char
   {
   if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (A.n_slices != B.n_slices) )
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x) );
     }
   }
 
@@ -731,7 +711,7 @@ arma_assert_same_size(const subview_cube<eT1>& A, const Cube<eT2>& B, const char
   {
   if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (A.n_slices != B.n_slices) )
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x) );
     }
   }
 
@@ -745,7 +725,7 @@ arma_assert_same_size(const subview_cube<eT1>& A, const subview_cube<eT2>& B, co
   {
   if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (A.n_slices != B.n_slices))
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, B.n_slices, x) );
     }
   }
 
@@ -768,7 +748,7 @@ arma_assert_same_size(const ProxyCube<eT1>& A, const ProxyCube<eT2>& B, const ch
   
   if( (A_n_rows != B_n_rows) || (A_n_cols != B_n_cols) || (A_n_slices != B_n_slices))
     {
-    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, A_n_slices, B_n_rows, B_n_cols, B_n_slices, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A_n_rows, A_n_cols, A_n_slices, B_n_rows, B_n_cols, B_n_slices, x) );
     }
   }
 
@@ -787,7 +767,7 @@ arma_assert_same_size(const Cube<eT1>& A, const Mat<eT2>& B, const char* x)
   {
   if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (A.n_slices != 1) )
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, 1, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, 1, x) );
     }
   }
 
@@ -801,7 +781,7 @@ arma_assert_same_size(const Mat<eT1>& A, const Cube<eT2>& B, const char* x)
   {
   if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (1 != B.n_slices) )
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, 1, B.n_rows, B.n_cols, B.n_slices, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A.n_rows, A.n_cols, 1, B.n_rows, B.n_cols, B.n_slices, x) );
     }
   }
 
@@ -815,7 +795,7 @@ arma_assert_same_size(const subview_cube<eT1>& A, const Mat<eT2>& B, const char*
   {
   if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (A.n_slices != 1) )
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, 1, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A.n_rows, A.n_cols, A.n_slices, B.n_rows, B.n_cols, 1, x) );
     }
   }
 
@@ -829,7 +809,7 @@ arma_assert_same_size(const Mat<eT1>& A, const subview_cube<eT2>& B, const char*
   {
   if( (A.n_rows != B.n_rows) || (A.n_cols != B.n_cols) || (1 != B.n_slices) )
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, 1, B.n_rows, B.n_cols, B.n_slices, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A.n_rows, A.n_cols, 1, B.n_rows, B.n_cols, B.n_slices, x) );
     }
   }
 
@@ -857,7 +837,7 @@ arma_assert_cube_as_mat(const Mat<eT>& M, const T1& Q, const char* x, const bool
           << Q_n_rows << 'x' << Q_n_cols << 'x' << Q_n_slices 
           << " as a matrix; one of the dimensions must be 1";
       
-      arma_stop( tmp.str() );
+      arma_stop_logic_error( tmp.str() );
       }
     }
   else
@@ -873,7 +853,7 @@ arma_assert_cube_as_mat(const Mat<eT>& M, const T1& Q, const char* x, const bool
             << Q_n_rows << 'x' << Q_n_cols << 'x' << Q_n_slices
             << " as a column vector";
         
-        arma_stop( tmp.str() );
+        arma_stop_logic_error( tmp.str() );
         }
       
       if( (M_vec_state == 2) && (Q_n_rows != 1) )
@@ -885,7 +865,7 @@ arma_assert_cube_as_mat(const Mat<eT>& M, const T1& Q, const char* x, const bool
             << Q_n_rows << 'x' << Q_n_cols << 'x' << Q_n_slices
             << " as a row vector";
         
-        arma_stop( tmp.str() );
+        arma_stop_logic_error( tmp.str() );
         }
       }
     else
@@ -899,7 +879,7 @@ arma_assert_cube_as_mat(const Mat<eT>& M, const T1& Q, const char* x, const bool
             << Q_n_rows << 'x' << Q_n_cols << 'x' << Q_n_slices
             << " as a vector";
         
-        arma_stop( tmp.str() );
+        arma_stop_logic_error( tmp.str() );
         }
       }
     }
@@ -931,7 +911,7 @@ arma_assert_cube_as_mat(const Mat<eT>& M, const T1& Q, const char* x, const bool
             << " as a matrix with dimensions "
             << M_n_rows << 'x' << M_n_cols;
         
-        arma_stop( tmp.str() );
+        arma_stop_logic_error( tmp.str() );
         }
       }
     else
@@ -948,7 +928,7 @@ arma_assert_cube_as_mat(const Mat<eT>& M, const T1& Q, const char* x, const bool
               << " as a column vector with dimensions "
               << M_n_rows << 'x' << M_n_cols;
           
-          arma_stop( tmp.str() );
+          arma_stop_logic_error( tmp.str() );
           }
         
         if( (M_vec_state == 2) && (Q_n_cols != M_n_cols) )
@@ -961,7 +941,7 @@ arma_assert_cube_as_mat(const Mat<eT>& M, const T1& Q, const char* x, const bool
               << " as a row vector with dimensions "
               << M_n_rows << 'x' << M_n_cols;
           
-          arma_stop( tmp.str() );
+          arma_stop_logic_error( tmp.str() );
           }
         }
       else
@@ -976,7 +956,7 @@ arma_assert_cube_as_mat(const Mat<eT>& M, const T1& Q, const char* x, const bool
               << " as a vector with dimensions "
               << M_n_rows << 'x' << M_n_cols;
           
-          arma_stop( tmp.str() );
+          arma_stop_logic_error( tmp.str() );
           }
         }
       }
@@ -997,7 +977,7 @@ arma_assert_mul_size(const uword A_n_rows, const uword A_n_cols, const uword B_n
   {
   if(A_n_cols != B_n_rows)
     {
-    arma_stop( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A_n_rows, A_n_cols, B_n_rows, B_n_cols, x) );
     }
   }
 
@@ -1015,7 +995,7 @@ arma_assert_mul_size(const Mat<eT1>& A, const Mat<eT2>& B, const char* x)
   
   if(A_n_cols != B_n_rows)
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A_n_cols, B_n_rows, B.n_cols, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A.n_rows, A_n_cols, B_n_rows, B.n_cols, x) );
     }
   }
 
@@ -1036,7 +1016,7 @@ arma_assert_mul_size(const Mat<eT1>& A, const Mat<eT2>& B, const bool do_trans_A
     const uword final_A_n_rows = (do_trans_A == false) ? A.n_rows : A.n_cols;
     const uword final_B_n_cols = (do_trans_B == false) ? B.n_cols : B.n_rows;
     
-    arma_stop( arma_incompat_size_string(final_A_n_rows, final_A_n_cols, final_B_n_rows, final_B_n_cols, x) );
+    arma_stop_logic_error( arma_incompat_size_string(final_A_n_rows, final_A_n_cols, final_B_n_rows, final_B_n_cols, x) );
     }
   }
 
@@ -1056,7 +1036,7 @@ arma_assert_trans_mul_size(const uword A_n_rows, const uword A_n_cols, const uwo
     const uword final_A_n_rows = (do_trans_A == false) ? A_n_rows : A_n_cols;
     const uword final_B_n_cols = (do_trans_B == false) ? B_n_cols : B_n_rows;
     
-    arma_stop( arma_incompat_size_string(final_A_n_rows, final_A_n_cols, final_B_n_rows, final_B_n_cols, x) );
+    arma_stop_logic_error( arma_incompat_size_string(final_A_n_rows, final_A_n_cols, final_B_n_rows, final_B_n_cols, x) );
     }
   }
 
@@ -1070,7 +1050,7 @@ arma_assert_mul_size(const Mat<eT1>& A, const subview<eT2>& B, const char* x)
   {
   if(A.n_cols != B.n_rows)
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
     }
   }
 
@@ -1084,7 +1064,7 @@ arma_assert_mul_size(const subview<eT1>& A, const Mat<eT2>& B, const char* x)
   {
   if(A.n_cols != B.n_rows)
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
     }
   }
 
@@ -1098,7 +1078,7 @@ arma_assert_mul_size(const subview<eT1>& A, const subview<eT2>& B, const char* x
   {
   if(A.n_cols != B.n_rows)
     {
-    arma_stop( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
+    arma_stop_logic_error( arma_incompat_size_string(A.n_rows, A.n_cols, B.n_rows, B.n_cols, x) );
     }
   }
 
@@ -1119,7 +1099,7 @@ arma_assert_blas_size(const T1& A)
     
     if(overflow)
       {
-      arma_bad("integer overflow: matrix dimensions are too large for integer type used by BLAS and LAPACK");
+      arma_stop_runtime_error("integer overflow: matrix dimensions are too large for integer type used by BLAS and LAPACK");
       }
     }
   }
@@ -1143,7 +1123,7 @@ arma_assert_blas_size(const T1& A, const T2& B)
     
     if(overflow)
       {
-      arma_bad("integer overflow: matrix dimensions are too large for integer type used by BLAS and LAPACK");
+      arma_stop_runtime_error("integer overflow: matrix dimensions are too large for integer type used by BLAS and LAPACK");
       }
     }
   }
@@ -1165,7 +1145,7 @@ arma_assert_atlas_size(const T1& A)
     
     if(overflow)
       {
-      arma_bad("integer overflow: matrix dimensions are too large for integer type used by ATLAS");
+      arma_stop_runtime_error("integer overflow: matrix dimensions are too large for integer type used by ATLAS");
       }
     }
   }
@@ -1189,7 +1169,7 @@ arma_assert_atlas_size(const T1& A, const T2& B)
     
     if(overflow)
       {
-      arma_bad("integer overflow: matrix dimensions are too large for integer type used by ATLAS");
+      arma_stop_runtime_error("integer overflow: matrix dimensions are too large for integer type used by ATLAS");
       }
     }
   }
@@ -1292,6 +1272,7 @@ arma_assert_atlas_size(const T1& A, const T2& B)
         out << "@ arma_config::openmp       = " << arma_config::openmp       << '\n';
         out << "@ arma_config::lapack       = " << arma_config::lapack       << '\n';
         out << "@ arma_config::blas         = " << arma_config::blas         << '\n';
+        out << "@ arma_config::newarp       = " << arma_config::newarp       << '\n';
         out << "@ arma_config::arpack       = " << arma_config::arpack       << '\n';
         out << "@ arma_config::superlu      = " << arma_config::superlu      << '\n';
         out << "@ arma_config::atlas        = " << arma_config::atlas        << '\n';

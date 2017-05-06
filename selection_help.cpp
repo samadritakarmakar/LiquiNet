@@ -32,8 +32,8 @@ selection_help::selection_help(double g1, double mu1, double ro1, QWidget *paren
     g=g1;
     mu=mu1;
     ro=ro1;
-    this->setWindowTitle("Selection Helper");
     ui->setupUi(this);
+    this->setWindowTitle("Selection Helper");
 }
 
 selection_help::~selection_help()

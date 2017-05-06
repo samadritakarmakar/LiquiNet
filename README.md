@@ -20,6 +20,8 @@ Head at Node 1 is 0 meter
 Flow out at Node 2 is -0.045m3/s (Negetive because it is flowing out of the system)  
 Flow out at Node 3 is -0.035m3/s  
 Diameter throughout is 0.243m  
+Pump Head is 20.23m  
+
 
 Then click the 'Go to Detail Input' button  
   
@@ -28,5 +30,18 @@ A new window will pop-up.
 Enter,  
 'Flow is from' 'Node' 1 'to' 'Node' 2  
 ![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Input_Details.png)
-  
-Select the 'Booster' radio button
+
+Select the 'Booster' radio button  
+A new window will popup.  
+
+![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Booster_Details.png)
+
+Enter 'Internal Diameter' as .0243m, 'Booster Head' as 20.23m. Click 'OK'  
+
+In 'Input Detail' window click 'Next Element'  
+![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Input_Details.png)
+
+In Similar way to the last Enter 'Flow is from' 'Node' 2 'to' 'Node' 3  
+
+Select 'Pipe Segment' radio button enter 'Internal Diameter' as .0243m, 'Roughness' as 5e-5m, 'Length' as 500m, and 'TotValue of k' as 10  
+![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Pipe_Segement_Details.png)

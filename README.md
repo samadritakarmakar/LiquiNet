@@ -54,6 +54,7 @@ In 'Input Detail' window click 'Next Element'
 'Flow is from' 'Node' 3 'to' 'Node' 1  
 Select 'Flow Control Valve' radio button  
 ![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Flow_Control_Valve_Details.png)
+
 Enter 'Internal Diameter' as .0243m, 'Value of k' as 3, 'Opening Percentage as' as 20.3%, and 'Value of n (nonlinearity)' as 1. Click 'OK'  
 
 In 'Input Details' window click 'Next Element'. THIS STEP IS IMPORTANT TO SAVE THE INPUTS OF LAST ELEMENT.  

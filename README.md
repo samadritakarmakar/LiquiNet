@@ -69,7 +69,7 @@ Select 'Flow into Node' radio button and enter -0.045m3/s. Click 'Next Node'
 
 ![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Input_Details_Node3.png)
 
-Select 'Flow into Node' radio button and enter -0.045m3/s. Click 'Next Node'. THIS STEP IS IMPORTANT TO SAVE THE INPUTS OF LAST ELEMENT.  
+Select 'Flow into Node' radio button and enter -0.035m3/s. Click 'Next Node'. THIS STEP IS IMPORTANT TO SAVE THE INPUTS OF LAST ELEMENT.  
 
 This should activate the button 'Solve' below. Click 'Solve' to view the results of analysis.  
 A new 'Results' window should open up. Maximize it to see all the generated data.  

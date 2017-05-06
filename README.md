@@ -15,6 +15,18 @@ So, there are 3 elements and 3 nodes. We shall enter the same in the 'Initialize
   
 ![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Initialize.png)
   
+Suppose the Problem is such that,  
+Head at Node 1 is 0 meter  
+Flow out at Node 2 is -0.045m3/s (Negetive because it is flowing out of the system)  
+Flow out at Node 3 is -0.035m3/s  
+Diameter throughout is 0.243m  
+
 Then click the 'Go to Detail Input' button  
   
 A new window will pop-up.  
+'Element Number' is filled automatically and cannot be edited.  
+Enter,  
+'Flow is from' 'Node' 1 'to' 'Node' 2  
+![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Input_Details.png)
+  
+Select the 'Booster' radio button

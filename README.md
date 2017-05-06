@@ -17,4 +17,4 @@ So, there are 3 elements and 3 nodes. We shall enter the same in the 'Initialize
   
 Then click the 'Go to Detail Input' button  
   
-A new window will pop-up. 
+A new window will pop-up.  

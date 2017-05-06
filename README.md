@@ -43,16 +43,18 @@ In 'Input Detail' window click 'Next Element'
 
 In Similar way to the last Enter 'Flow is from' 'Node' 2 'to' 'Node' 3  
 
-Select 'Pipe Segment' radio button enter 'Internal Diameter' as .0243m, 'Roughness' as 5e-5m, 'Length' as 500m, and 'Total Value of k' as 10  
+Select 'Pipe Segment' radio button  
 ![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Pipe_Segment_Details.png)
+
+Enter 'Internal Diameter' as .0243m, 'Roughness' as 5e-5m, 'Length' as 500m, and 'Total Value of k' as 10  
 
 In 'Input Detail' window click 'Next Element'  
 ![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Input_Details3.png)
 
 'Flow is from' 'Node' 3 'to' 'Node' 1  
-Select 'Flow Control Valve' radio button enter 'Internal Diameter' as .0243m, 'Value of k' as 3, 'Opening Percentage as' as 20.3%, and 'Value of n (nonlinearity)' as 1. Click 'OK'  
+Select 'Flow Control Valve' radio button  
 ![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Flow_Control_Valve_Details.png)
-
+Enter 'Internal Diameter' as .0243m, 'Value of k' as 3, 'Opening Percentage as' as 20.3%, and 'Value of n (nonlinearity)' as 1. Click 'OK'  
 
 In 'Input Details' window click 'Next Element'. THIS STEP IS IMPORTANT TO SAVE THE INPUTS OF LAST ELEMENT.  
 

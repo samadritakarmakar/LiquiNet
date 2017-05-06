@@ -59,13 +59,16 @@ In 'Input Details' window click 'Next Element'. THIS STEP IS IMPORTANT TO SAVE T
 Click the Tab 'Node Input'  
 
 ![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Input_Details_Node.png)
+
 'Node Number' is filled automatically and cannot be edited.  
 Select 'Head at Node' radio button and enter 0m. Click 'Next Node'  
 
 ![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Input_Details_Node2.png)
+
 Select 'Flow into Node' radio button and enter -0.045m3/s. Click 'Next Node'  
 
 ![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Input_Details_Node3.png)
+
 Select 'Flow into Node' radio button and enter -0.045m3/s. Click 'Next Node'. THIS STEP IS IMPORTANT TO SAVE THE INPUTS OF LAST ELEMENT.  
 
 This should activate the button 'Solve' below. Click 'Solve' to view the results of analysis.  

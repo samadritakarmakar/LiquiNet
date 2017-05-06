@@ -39,9 +39,9 @@ A new window will popup.
 Enter 'Internal Diameter' as .0243m, 'Booster Head' as 20.23m. Click 'OK'  
 
 In 'Input Detail' window click 'Next Element'  
-![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Input_Details.png)
+![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Input_Details2.png)
 
 In Similar way to the last Enter 'Flow is from' 'Node' 2 'to' 'Node' 3  
 
 Select 'Pipe Segment' radio button enter 'Internal Diameter' as .0243m, 'Roughness' as 5e-5m, 'Length' as 500m, and 'TotValue of k' as 10  
-![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Pipe_Segement_Details.png)
+![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Pipe_Segment_Details.png)

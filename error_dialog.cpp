@@ -24,6 +24,7 @@ error_dialog::error_dialog(QWidget *parent) :
     ui(new Ui::error_dialog)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Error!");
 }
 
 error_dialog::~error_dialog()

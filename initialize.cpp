@@ -25,6 +25,7 @@
 #include <QFileDialog>
 #include <QDir>
 #include "selection_help.h"
+#include "error_dialog.h"
 
 mat C;
 mat Q;
@@ -86,11 +87,19 @@ void Initialize::on_Dtl_Inpt_pb_clicked()
     qa=ui->qa_le->text().toDouble();
     E=ui->E_le->text().toInt();
     N=ui->N_le->text().toInt();
-    this->close();
-    initialize_zeros();
-    qDebug()<<C.n_rows<<C.n_cols;
-    Detail_Input *d=new Detail_Input;
-    d->show();
+    error_dialog* e=new error_dialog;
+    if(E<1 || N<2)
+    {
+        e->callerror("Elements cannot be less than one(1) and\nNodes cannot be less than two(2)");
+    }
+    else
+    {
+        this->close();
+        initialize_zeros();
+        qDebug()<<C.n_rows<<C.n_cols;
+        Detail_Input* d=new Detail_Input;
+        d->show();
+    }
     /*selection_help* h=new selection_help(g, mu, ro);
     h->show();*/
 }

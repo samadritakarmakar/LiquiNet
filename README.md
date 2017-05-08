@@ -107,6 +107,6 @@ If you need to find percentage of valve opening, you may do so by clicking the r
 
 # How to Compile.
 
-    qmake LiquiNet.Pro
+    qmake LiquiNet.pro
     make 
 

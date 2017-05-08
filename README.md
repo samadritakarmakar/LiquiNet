@@ -79,7 +79,8 @@ A new 'Results' window should open up. Maximize it to see all the generated data
 
 ![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Results_elem.png)
 
-Note: For Booster/Pump there is negetive head loss because Head is added. Flow represents the flow through the element.  
+Note: For Booster/Pump there is negetive head loss because Head is added.  
+Flow represents the flow through the element. The flow is negetive if your assumption was in the opposite direction during the input.  
 
 ![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Results_node.png)
 
@@ -92,14 +93,20 @@ A new Window will popup.
 
 ![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Selection_Helper.png)
 
-If you need to find Diameter of pipe, you may do so by clicking the radio button 'Calculate Internal Diameter for Pipe Segment.'A Sample Input is given below. Click 'Go' button to know the results.  
+If you need to find Diameter of pipe, you may do so by clicking the radio button 'Calculate Internal Diameter for Pipe Segment.' A Sample Input is given below. Click 'Go' button to know the results.  
 
 ![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Selection_Helper1.png)
 
-If you need to find total pump or booster head, you may do so by clicking the radio button 'Calculate Required Head of Booster.'A Sample Input is given below. Click 'Go' button to know the results.  
+If you need to find total pump or booster head, you may do so by clicking the radio button 'Calculate Required Head of Booster.' A Sample Input is given below. Click 'Go' button to know the results.  
 
 ![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Selection_Helper2.png)
 
-If you need to find percentage of valve opening, you may do so by clicking the radio button 'Calculate Required Opening of Valve.'A Sample Input is given below. Click 'Go' button to know the results.  
+If you need to find percentage of valve opening, you may do so by clicking the radio button 'Calculate Required Opening of Valve.' A Sample Input is given below. Click 'Go' button to know the results.  
 
 ![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Selection_Helper3.png)
+
+# How to Compile.
+
+    qmake LiquiNet.Pro
+    make 
+

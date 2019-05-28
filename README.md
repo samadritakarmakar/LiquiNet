@@ -6,7 +6,7 @@ We will start with the diagram given in the Documentation.
   
 ![alt tag](https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Problem%20Set.png)
 
-<img src="https://github.com/samadritakarmakar/LiquiNet/blob/master/Documentation/Problem%20Set.png" alt="Problem Set" class="inline"/>
+<img src="Documentation/Problem Set.png" alt="Problem Set" class="inline"/>
   
 The numbers within the circles indicate the node numbers. The numbers within the squares indicate the element numbers.  
 
